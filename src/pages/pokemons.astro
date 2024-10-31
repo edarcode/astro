@@ -1,0 +1,30 @@
+---
+import Pokemon from "../components/Pokemon/Pokemon.astro";
+import Layaout from "../layouts/Layaout/Layaout.astro";
+import type { Pokemons } from "../pokeapi/interfaces";
+import { POKEAPI } from "../pokeapi/urls";
+import { PAGES } from "./pages";
+
+const res = await fetch(POKEAPI.pokemons);
+const pokemons = (await res.json()) as Pokemons;
+---
+
+<Layaout title={PAGES.pokemons.display}>
+  <h1>Pokemons</h1>
+  <ul>
+    {
+      pokemons.results.map((item) => {
+        const id = item.url.split("/").at(-2);
+
+        return <Pokemon id={Number(id)} />;
+      })
+    }
+  </ul>
+</Layaout>
+<style>
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+</style>

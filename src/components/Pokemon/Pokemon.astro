@@ -1,0 +1,33 @@
+---
+import type { PokemonDetails } from "../../pokeapi/interfaces";
+import { POKEAPI } from "../../pokeapi/urls";
+
+interface Props {
+  id: number;
+}
+
+const { id } = Astro.props;
+
+const res = await fetch(POKEAPI.pokemons + "/" + id);
+const pokemon = (await res.json()) as PokemonDetails;
+const name = pokemon.name;
+const img = pokemon.sprites.other?.["official-artwork"].front_default;
+---
+
+<article>
+  <div>{name}</div>
+  <img src={img} alt={name} />
+</article>
+
+<style>
+  article {
+    border: 1px solid #333;
+    width: 100px;
+    padding: 5px;
+    border-radius: 5px;
+
+    img {
+      max-width: 100%;
+    }
+  }
+</style>
