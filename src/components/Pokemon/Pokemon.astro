@@ -3,24 +3,24 @@ import type { PokemonDetails } from "../../pokeapi/interfaces";
 import { POKEAPI } from "../../pokeapi/urls";
 
 interface Props {
-  id: number;
+  url: string;
 }
 
-const { id } = Astro.props;
+const { url } = Astro.props;
 
-const res = await fetch(POKEAPI.pokemons + "/" + id);
+const res = await fetch(url);
 const pokemon = (await res.json()) as PokemonDetails;
 const name = pokemon.name;
 const img = pokemon.sprites.other?.["official-artwork"].front_default;
 ---
 
-<article>
+<a href=`/pokemons/${name}`>
   <div>{name}</div>
   <img src={img} alt={name} />
-</article>
+</a>
 
 <style>
-  article {
+  a {
     border: 1px solid #333;
     width: 100px;
     padding: 5px;

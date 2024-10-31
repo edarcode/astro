@@ -12,15 +12,10 @@ const pokemons = (await res.json()) as Pokemons;
 <Layaout title={PAGES.pokemons.display}>
   <h1>Pokemons</h1>
   <ul>
-    {
-      pokemons.results.map((item) => {
-        const id = item.url.split("/").at(-2);
-
-        return <Pokemon id={Number(id)} />;
-      })
-    }
+    {pokemons.results.map((item) => <Pokemon url={item.url} />)}
   </ul>
 </Layaout>
+
 <style>
   ul {
     display: flex;
