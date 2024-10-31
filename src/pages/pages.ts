@@ -4,7 +4,7 @@ export const PAGES = {
     display: "Astro",
   },
   pokemons: {
-    path: "pokemons",
+    path: "/pokemons",
     display: "Pokemons",
   },
 };
