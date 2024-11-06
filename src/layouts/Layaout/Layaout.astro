@@ -1,14 +1,9 @@
 ---
-import ViewTransitions from "astro/components/ViewTransitions.astro";
-import Nav from "../../components/Nav/Nav.astro";
-
 interface Props {
   title: string;
 }
 
 const { title } = Astro.props;
-
-const hour = new Date().toLocaleTimeString();
 ---
 
 <html lang="es">
@@ -18,10 +13,8 @@ const hour = new Date().toLocaleTimeString();
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
-    <ViewTransitions />
   </head>
   <body>
-    <Nav />
     <main>
       <slot />
     </main>
