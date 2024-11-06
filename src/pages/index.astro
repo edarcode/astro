@@ -1,11 +1,15 @@
 ---
+import Nav from "../components/Nav/Nav.astro";
 import Layaout from "../layouts/Layaout/Layaout.astro";
 ---
 
 <Layaout title="Astro">
   <h1>Astro</h1>
+
+  <Nav />
+
   <div>
-    Hora: <span id="time"></span>
+    Hora: <span id="time">{new Date().toLocaleTimeString()}</span>
   </div>
 </Layaout>
 
