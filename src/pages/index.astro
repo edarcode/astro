@@ -4,4 +4,15 @@ import Layaout from "../layouts/Layaout/Layaout.astro";
 
 <Layaout title="Astro">
   <h1>Astro</h1>
+  <div>
+    Hora: <span id="time"></span>
+  </div>
 </Layaout>
+
+<script>
+  const time = document.querySelector("#time") as HTMLElement;
+
+  setInterval(() => {
+    time.textContent = new Date().toLocaleTimeString();
+  }, 1000);
+</script>
