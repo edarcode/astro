@@ -14,9 +14,17 @@ import Layaout from "../layouts/Layaout/Layaout.astro";
 </Layaout>
 
 <script>
-  const time = document.querySelector("#time") as HTMLElement;
+  let intervalId: number;
 
-  setInterval(() => {
-    time.textContent = new Date().toLocaleTimeString();
-  }, 1000);
+  document.addEventListener("astro:page-load", () => {
+    intervalId = setInterval(() => {
+      const time = document.querySelector("#time") as HTMLElement;
+      time.textContent = new Date().toLocaleTimeString();
+    }, 1000);
+  });
+
+  document.addEventListener("astro:before-preparation", () => {
+    console.log(intervalId, "interval ");
+    clearInterval(intervalId);
+  });
 </script>
